@@ -1,6 +1,7 @@
-node_modules
 .env
 .editorconfig
 .prettierrc
+.DS_Store
 nodemon.json
+node_modules
 /dist
