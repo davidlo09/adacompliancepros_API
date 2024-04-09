@@ -1,7 +1,7 @@
 import http from 'http';
-import app from './app';
+import app from './src/app';
 require('dotenv').config();
-import utils from './utils';
+import utils from './src/utils';
 
 const port = process.env.PORT as string;
 
