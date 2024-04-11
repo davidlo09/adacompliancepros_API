@@ -37,7 +37,7 @@ export const generateEmailLayout = (data: WaveResponse) => {
 
       .ctaButton {
         color: #3f67f3 !important;
-         background-color: #ffffff !important;
+        background-color: #ffffff;
       }
 
       .mainHeader,
