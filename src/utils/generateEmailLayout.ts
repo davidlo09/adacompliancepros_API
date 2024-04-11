@@ -15,10 +15,6 @@ export const generateEmailLayout = (data: WaveResponse) => {
     <meta name="color-scheme" content="light dark" />
     <meta name="supported-color-schemes" content="light dark" />
     <style type="text/css">
-      :root {
-        color-scheme: light dark;
-        supported-color-schemes: light dark;
-      }
 
       header,
       .mainUpperContainer {
@@ -37,7 +33,6 @@ export const generateEmailLayout = (data: WaveResponse) => {
 
       .ctaButton {
         color: #3f67f3 !important;
-        background-color: #ffffff;
       }
 
       .mainHeader,
