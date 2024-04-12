@@ -3,11 +3,6 @@ export type AdaCompilanceRequestArgs = {
   email: string;
 };
 
-export type GenerateEmailPayload = {
-  data: WaveResponse;
-  email: string;
-};
-
 export type WaveResponse = {
   status: { success: boolean; httpstatuscode: number };
   statistics: {

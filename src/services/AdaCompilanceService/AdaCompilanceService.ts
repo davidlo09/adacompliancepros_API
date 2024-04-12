@@ -24,11 +24,8 @@ class AdaCompilanceService {
     try {
       const report = await this.getAdaReport(url);
 
-      const emailPayload = cfg.generateAdaEmailPayload({
-        data: report?.data,
-        email,
-      });
-      const { response } = await EmailService.sendMail(emailPayload);
+      const emailPayload = cfg.generateAdaEmailPayload(report?.data);
+      const { response } = await EmailService.sendMail({...emailPayload, to: email});
       if (response.startsWith('250 OK')) {
         return `The report for ${url} was successfully sent to ${email}`;
       }

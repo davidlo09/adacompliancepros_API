@@ -12,4 +12,10 @@ router.post(
   controllerWrapper(controllers.adaCompilance)
 );
 
+router.post(
+  '/vpat-101-explainer',
+  middlewares.validateEmail,
+  controllerWrapper(controllers.vpat101)
+);
+
 export default router;

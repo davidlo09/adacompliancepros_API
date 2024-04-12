@@ -1,10 +1,9 @@
 export type EmailPayload = {
-  from: string;
   to: string;
   subject: string;
-  text: string;
+  text?: string;
   html: string;
-  attachments: {
+  attachments?: {
     filename: string;
     content: Buffer;
     contentType: string;

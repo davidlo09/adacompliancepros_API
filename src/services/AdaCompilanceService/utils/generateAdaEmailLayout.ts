@@ -1,6 +1,6 @@
-import { WaveResponse } from '../services/AdaCompilanceService/types';
+import { WaveResponse } from '../types';
 
-export const generateEmailLayout = (data: WaveResponse) => {
+export const generateAdaEmailLayout = (data: WaveResponse) => {
   const { statistics, categories } = data;
 
   return `
@@ -319,7 +319,9 @@ export const generateEmailLayout = (data: WaveResponse) => {
         </h1>
         <div class="websiteUrlContainer">
           <a href="${statistics.pageurl}" class="websiteLink" target="_blank"
-            ><span style="display: block">${statistics.pageurl}</span>
+            ><span style="display: block; margin: auto 0; ">${
+              statistics.pageurl
+            }</span>
             <img
               width="24"
               height="24"
