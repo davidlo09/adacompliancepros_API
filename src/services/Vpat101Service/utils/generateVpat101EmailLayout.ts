@@ -80,7 +80,7 @@ export const generateAdaEmailLayout = (name: string) => {
       </div>
       <div class="buttonsContainer">
         <a
-          href="https://calendly.com/adacp/30min"
+          href="https://calendly.com/adacp/vpat-consultation"
           class="button"
           style="display: block; margin-right: 10px; color: #fff !important"
           >SCHEDULE A CONSULT</a
