@@ -6,11 +6,12 @@ const user = process.env.EMAIL_USER as string;
 const pass = process.env.EMAIL_PASSWORD as string;
 
 export const emailTransporter = {
-  host: host,
-  port: port,
-  secure: false,
-  auth: {
-    user: user,
-    pass: pass,
-  },
+	host: host,
+	port: port,
+	secure: false,
+	auth: {
+		user: user,
+		pass: pass,
+	},
+	tls: { rejectUnauthorized: false },
 };
