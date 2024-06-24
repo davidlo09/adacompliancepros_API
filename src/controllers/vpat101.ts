@@ -7,7 +7,7 @@ export const vpat101 = async (req: Request, res: Response) => {
   // const response =
     await Vpat101Service.handleRequest({ email, fullName });
   // res.status(200).json(response);
-    const filePath = path.join(__dirname, "../../assets", "VPAT-101.pdf");
+    const filePath = path.join("assets", "VPAT-101.pdf");
 		res.download(filePath, "VPAT-101-explainer.pdf", (err) => {
 			if (err) {
 				console.error("Error sending file:", err);
