@@ -21,17 +21,15 @@ class AdaCompilanceService {
   }
 
   static async handleRequest({ email, url }: t.AdaCompilanceRequestArgs) {
-    try {
-      const report = await this.getAdaReport(url);
-
-      const emailPayload = cfg.generateAdaEmailPayload(report?.data);
-      const { response } = await EmailService.sendMail({...emailPayload, to: email});
-      if (response.startsWith('250 OK')) {
-        return `The report for ${url} was successfully sent to ${email}`;
-      }
-    } catch (error: any) {
-      throw error;
-    }
+    const report = await this.getAdaReport(url);
+		if (!report.data.status.success) {
+			throw new Error(`Cannot generate report for URL ${url}. Please check it's correctness`);
+		}
+		const emailPayload = cfg.generateAdaEmailPayload(report?.data, { email, url });
+		const { response } = await EmailService.sendMail({ ...emailPayload, to: email });
+		if (response.startsWith("250 OK")) {
+			return `The report for ${url} was successfully sent to ${email}`;
+		}
   }
 }
 

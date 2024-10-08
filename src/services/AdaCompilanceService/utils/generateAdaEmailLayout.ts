@@ -1,9 +1,9 @@
-import { WaveResponse } from '../types';
+import { AdaCompilanceRequestArgs, WaveResponse } from "../types";
 
-export const generateAdaEmailLayout = (data: WaveResponse) => {
-  const { statistics, categories } = data;
+export const generateAdaEmailLayout = (data: WaveResponse, { email, url }: AdaCompilanceRequestArgs) => {
+	const { statistics, categories } = data;
 
-  return `
+	return `
 <html>
   <head>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -35,12 +35,18 @@ export const generateAdaEmailLayout = (data: WaveResponse) => {
         color: #3f67f3 !important;
       }
 
+      .notice {
+      margin-top: 32px;
+      }
+
       .mainHeader,
       .websiteLink,
       .resultItem,
       .instructionDescription,
       .footerHeader,
-      .footerDescription {
+      .footerDescription,
+      .notice,
+      .notice a {
         color: #fff !important;
       }
 
@@ -195,6 +201,9 @@ export const generateAdaEmailLayout = (data: WaveResponse) => {
         font-weight: 700;
       }
 
+      .footerLink{
+      }
+
       @media screen and (min-width: 320px) {
         .mainHeader {
           font-size: 32px;
@@ -319,9 +328,7 @@ export const generateAdaEmailLayout = (data: WaveResponse) => {
         </h1>
         <div class="websiteUrlContainer">
           <a href="${statistics.pageurl}" class="websiteLink" target="_blank"
-            ><span style="display: block; margin: auto 0; ">${
-              statistics.pageurl
-            }</span>
+            ><span style="display: block; margin: auto 0; ">${statistics.pageurl}</span>
             <img
               width="24"
               height="24"
@@ -338,29 +345,29 @@ export const generateAdaEmailLayout = (data: WaveResponse) => {
         <div class="resultsContainer">
           <div class="upperResultsContainer">
             ${Object.entries(categories)
-              .slice(0, 3)
-              .map(
-                ([_, value]) => `
+							.slice(0, 3)
+							.map(
+								([_, value]) => `
             <div class="resultItem">
               <span style="display: block">${value.description}:</span
               ><span class="resultItemValueCount">${value.count}</span>
             </div>
             `
-              )
-              .join('')}
+							)
+							.join("")}
           </div>
           <div class="bottomResultsContainer">
             ${Object.entries(categories)
-              .slice(3, 6)
-              .map(
-                ([_, value]) => `
+							.slice(3, 6)
+							.map(
+								([_, value]) => `
             <div class="resultItem">
               <span style="display: block">${value.description}:</span
               ><span class="resultItemValueCount">${value.count}</span>
             </div>
             `
-              )
-              .join('')}
+							)
+							.join("")}
           </div>
         </div>
       </div>
@@ -424,6 +431,7 @@ export const generateAdaEmailLayout = (data: WaveResponse) => {
             Schedule a consult
           </button></a
         >
+        <p class="notice">* You received this email because you requested information on the https://adacompliancepros.com/ website about ADA compliance for the website ${url} and provided this email address ${email} as the contact address.</p>
       </div>
     </footer>
   </body>

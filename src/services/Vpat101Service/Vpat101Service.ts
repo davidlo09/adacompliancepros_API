@@ -7,7 +7,7 @@ class Vpat101Service {
   
   static async handleRequest(data: t.Vpat101Args) {
     const { fullName, email } = data;
-    const emailPayload = cfg.generateVpat101EmailPayload(fullName);
+    const emailPayload = cfg.generateVpat101EmailPayload(data);
     const { response } = await EmailService.sendMail({
       ...emailPayload,
       to: email,

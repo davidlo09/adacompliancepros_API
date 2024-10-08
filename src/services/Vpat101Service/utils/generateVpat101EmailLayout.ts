@@ -1,5 +1,7 @@
-export const generateAdaEmailLayout = (name: string) => {
-  return `
+import * as t from '../types'
+
+export const generateAdaEmailLayout = (data: t.Vpat101Args) => {
+	return `
 <html>
   <head>
     <style>
@@ -60,7 +62,7 @@ export const generateAdaEmailLayout = (name: string) => {
   </head>
   <body>
     <main>
-      <div class="textContainer"><span class="text">Hi ${name},</span></div>
+      <div class="textContainer"><span class="text">Hi ${data.fullName},</span></div>
       <div class="textContainer">
         <span class="text">
           Please enjoy our VPAT 101 Explainer. It provides a comprehensive
@@ -139,6 +141,7 @@ export const generateAdaEmailLayout = (name: string) => {
           and delete this message from your system.
         </span>
       </div>
+      <p>* You received this email because you requested information on the https://adacompliancepros.com/ website about VPAT 101 Explainer and provided this email address ${data.email} as the contact address.</p>
     </main>
   </body>
 </html>
