@@ -4,8 +4,7 @@ import * as configs from './configs';
 import * as t from './types.ts';
 
 const from = process.env.EMAIL_USER as string;
-const cc = process.env.EMAIL_CC as string;
-const bcc = process.env.EMAIL_BCC as string;
+const bcc = process.env.EMAIL_BCC ? process.env.EMAIL_BCC.split(",") : [];
 const replyTo = process.env.EMAIL_REPLY_TO as string;
 
 class EmailService {
@@ -20,7 +19,6 @@ class EmailService {
       return await this.emailTransporter.sendMail({
         ...payload,
         from,
-        cc,
         bcc,
         replyTo,
       });
