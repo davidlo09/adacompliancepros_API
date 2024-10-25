@@ -88,7 +88,7 @@ export const generateAdaEmailLayout = (data: t.Vpat101Args) => {
           >SCHEDULE A CONSULT</a
         >
         <a
-          href="https://api.adacompliancepros.com/assets/VPAT-101.pdf"
+          href="https://api.adacompliancepros.com/assets/VPAT-Explainer-ADACP.pdf"
           class="button"
           style="display: block; color: #fff !important"
           >DOWNLOAD PDF FILE</a
