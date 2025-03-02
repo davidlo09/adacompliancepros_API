@@ -9,6 +9,7 @@ router.post(
   '/check-ada-compilance',
   middlewares.validateEmail,
   middlewares.validateURL,
+  middlewares.validateName,
   controllerWrapper(controllers.adaCompilance)
 );
 

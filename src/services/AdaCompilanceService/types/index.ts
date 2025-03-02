@@ -1,6 +1,12 @@
 export type AdaCompilanceRequestArgs = {
-  url: string;
-  email: string;
+	url: string;
+	email: string;
+	fullName: string;
+};
+
+export type CategoryPayload = {
+  description: string;
+  count: number;
 };
 
 export type WaveResponse = {
@@ -15,12 +21,18 @@ export type WaveResponse = {
     waveurl: string;
   };
   categories: {
-    error: { description: string; count: number };
-    contrast: { description: string; count: number };
-    alert: { description: string; count: number };
-    feature: { description: string; count: number };
-    structure: { description: string; count: number };
-    aria: { description: string; count: number };
+    error: CategoryPayload;
+    contrast: CategoryPayload;
+    alert: CategoryPayload;
+    feature: CategoryPayload;
+    structure: CategoryPayload;
+    aria: CategoryPayload;
   };
 };
+
+export type FormattedCategories = {
+  title: string;
+  description: string;
+  count: number;
+}
 
