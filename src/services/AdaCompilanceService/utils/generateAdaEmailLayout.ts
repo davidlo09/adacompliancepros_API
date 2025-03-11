@@ -1,9 +1,6 @@
 import { AdaCompilanceRequestArgs, FormattedCategories } from "../types";
 
-export const generateAdaEmailLayout = (
-	data: FormattedCategories[],
-	{ url, fullName }: AdaCompilanceRequestArgs
-) => {
+export const generateAdaEmailLayout = (data: FormattedCategories[], { url, fullName }: AdaCompilanceRequestArgs) => {
 	return `
 <html>
 	<head>
@@ -30,7 +27,7 @@ export const generateAdaEmailLayout = (
 
 			.ctaButton {
 				color: #ffa800 !important;
-        background-color: #000000 !important;
+				background-color: #000000 !important;
 			}
 
 			.notice {
@@ -116,7 +113,7 @@ export const generateAdaEmailLayout = (
 				height: 166px;
 				margin-left: auto;
 				margin-right: auto;
-				margin-bottom: 12px;
+				margin-bottom: 6px;
 			}
 
 			.upperResultsContainer,
@@ -145,6 +142,30 @@ export const generateAdaEmailLayout = (
 				padding: 44px 20px;
 			}
 
+			.imageConainer {
+				display: block !important;
+				width: fit-content !important;
+				margin-left: auto !important;
+				margin-right: auto !important;
+				margin-bottom: 32px !important;
+				text-align: center !important;
+			}
+
+			.resultsUpperText {
+				align-self: center !important;
+				margin-bottom: -18 !important;
+				color: white !important;
+			}
+
+			.resultBottomTextContainer {
+				display: flex !important;
+				justify-content: space-between !important;
+			}
+
+			.resultsBottomText {
+				color: white !important;
+			}
+
 			.instructionHeaderContainer {
 				margin-bottom: 6px;
 			}
@@ -156,12 +177,10 @@ export const generateAdaEmailLayout = (
 				letter-spacing: -1px;
 			}
 
-       .instructionList{
-        display: flex;
-        flex-direction: column;
-      }
-
-    
+			.instructionList {
+				display: flex;
+				flex-direction: column;
+			}
 
 			.instructionDescription {
 				margin-bottom: 28px;
@@ -194,10 +213,10 @@ export const generateAdaEmailLayout = (
 				font-weight: 400;
 			}
 
-      .buttonContainer {
-        display: flex;
-        justify-content: center;
-      }
+			.buttonContainer {
+				display: flex;
+				justify-content: center;
+			}
 
 			.ctaButton {
 				padding: 12px;
@@ -243,9 +262,9 @@ export const generateAdaEmailLayout = (
 
 				.resultsContainer {
 					display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  grid-template-rows: repeat(3, auto);
-  gap: 16px;
+					grid-template-columns: repeat(2, 1fr);
+					grid-template-rows: repeat(3, auto);
+					gap: 16px;
 				}
 
 				.upperResultsContainer,
@@ -341,11 +360,26 @@ export const generateAdaEmailLayout = (
 						/>
 					</a>
 				</div>
-				<img class="resultsIcon" src="https://api.adacompliancepros.com/assets/results1.png" />
+				<!-- <div
+					style="
+						display: flex;
+						justify-content: center;
+						flex-direction: column;
+						width: fit-content;
+						margin-left: auto;
+						margin-right: auto;
+					"
+				>
+					<span style="align-self: center; margin-bottom: -18">Your results are in.</span>
+					<img class="resultsIcon" src="https://api.adacompliancepros.com/assets/results1.png" />
+					<div style="display: flex; justify-content: space-between">
+						<span>Compliant</span><span>Non-Compliant</span>
+					</div>
+				</div> -->
 			</div>
 			<div class="mainBottomContainer">
 				<div class="instructionList">
-					<div >
+					<div>
 						<div class="instructionHeaderContainer">
 							<h3 class="instrunctionHeader">
 								<span>Dear ${fullName}</span>
@@ -358,7 +392,18 @@ export const generateAdaEmailLayout = (
 							to do for compliance. These results include important insights.<br /><br />
 							It’s now expected that all public-facing digital properties comply with standard frameworks that allow
 							people with disabilities to use them. If you’re not accessible, you’re vulnerable to an ADA lawsuit. Being
-							proactive and compliant is required for all businesses.<br /><br />
+							proactive and compliant is required for all businesses.</span
+						>
+						<div class="imageConainer">
+							<span class="resultsUpperText">Your results are in</span>
+							<img class="resultsIcon" src="https://api.adacompliancepros.com/assets/results1.png" />
+							<div class="resultBottomTextContainer">
+								<span style="text-align: left; width: 50%; display: block; color: white">Compliant</span>
+
+								<span style="text-align: right; width: 50%; display: block; color: white">Non-Compliant</span>
+							</div>
+						</div>
+						<span class="instructionDescription">
 							Below is a summary of your initial personalized report on digital accessibility for ${url}. The results
 							are from an automated test, which–at best–can only uncover about 30% of the accessibility issues that
 							actually exist.<br /><br />
@@ -370,21 +415,22 @@ export const generateAdaEmailLayout = (
 			</div>
 			<div class="mainUpperContainer">
 				<div class="resultsContainer">
-          ${data
+					${data
 						.map(
-							(item) =>
-								`<div class="resultItem">
-          <span style="color: #ffa800"><b>${item.count}</b></span>
-          <span style="color: #ffa800"><b>${item.title}:</b></span>
-          <span>${item.description}</span> 
-          </div>`
+							(item) => `
+					<div class="resultItem">
+						<span style="color: #ffa800"><b>${item.count}</b></span>
+						<span style="color: #ffa800"><b>${item.title}:</b></span>
+						<span>${item.description}</span>
+					</div>
+					`
 						)
 						.join("")}
-			  </div>
-      </div>
+				</div>
+			</div>
 			<div class="mainBottomContainer">
 				<div class="instructionList">
-					<div >
+					<div>
 						<div class="instructionHeaderContainer">
 							<h3 class="instrunctionHeader">
 								<span>Take Your Next Steps to Digital Accessibility Now</span>
@@ -405,14 +451,17 @@ export const generateAdaEmailLayout = (
 							David LoPresti<br /><br />
 							CEO of ADACP
 						</span>
-						<div class="buttonContainer"><a href="https://calendly.com/adacp/30min"
-							><button type="button" class="ctaButton">Schedule a consult</button></a
-						></div>
+						<div class="buttonContainer">
+							<a href="https://calendly.com/adacp/30min"
+								><button type="button" class="ctaButton">Schedule a consult</button></a
+							>
+						</div>
 					</div>
 				</div>
 			</div>
 		</main>
 	</body>
 </html>
+
 `;
 };
